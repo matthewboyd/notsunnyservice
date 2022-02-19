@@ -48,7 +48,7 @@ func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyAct
 		newActivityList = append(newActivityList, a)
 	}
 	choosenActivity, _ := h.retrieveActivity(newActivityList)
-	return &pb.ActivityResponse{fmt.Sprintf("%s %s", choosenActivity.Name, choosenActivity.Postcode)}, nil
+	return &pb.ActivityResponse{Allweatheractivity: fmt.Sprintf("%s %s", choosenActivity.Name, choosenActivity.Postcode)}, nil
 }
 
 func (h *server) retrieveActivity(newActivityList []Activities) (Activities, error) {
