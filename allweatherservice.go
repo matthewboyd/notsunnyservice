@@ -2,7 +2,6 @@ package notsunnyservice
 
 import (
 	"context"
-	"fmt"
 	"github.com/go-redis/redis/v8"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"log"
@@ -22,7 +21,12 @@ type Activities struct {
 	Sunny    bool
 }
 
-func (h *Handler) GetNotSunnyActivities() string {
+type Activity struct {
+	Name     string
+	Postcode string
+}
+
+func (h *Handler) GetAllWeatherActivities() *Activity {
 	var a Activities
 	var newActivityList []Activities
 	var ctx context.Context
@@ -40,7 +44,7 @@ func (h *Handler) GetNotSunnyActivities() string {
 		newActivityList = append(newActivityList, a)
 	}
 	choosenActivity, _ := h.retrieveActivity(newActivityList)
-	return fmt.Sprintf("%s %s", choosenActivity.Name, choosenActivity.Postcode)
+	return &Activity{choosenActivity.Name, choosenActivity.Postcode}
 }
 
 func (h *Handler) retrieveActivity(newActivityList []Activities) (Activities, error) {
