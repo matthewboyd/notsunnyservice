@@ -9,8 +9,10 @@ service NotSunnyActivities{
   rpc GetAllWeatherActivities(NotSunnyActivitiesParams) returns (ActivityResponse) {};
 }
 
-message NotSunnyActivitiesParams {}
+message NotSunnyActivitiesParams {
+  string test = 1;
+}
 
 message ActivityResponse {
-  string allweatheractivity = 1;
+  string Allweatheractivity = 1;
 }

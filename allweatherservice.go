@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/go-redis/redis/v8"
 	"github.com/jackc/pgx/v4/pgxpool"
 	pb "github.com/matthewboyd/notsunnyservice/pb"
@@ -35,6 +36,7 @@ type Activity struct {
 }
 
 func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyActivitiesParams) (*pb.ActivityResponse, error) {
+	log.Println("In the GetAllWeatherService")
 	var a Activities
 	var newActivityList []Activities
 	notSunnyActivitiesQuery := "SELECT * FROM activities where sunny = $1"
@@ -51,7 +53,7 @@ func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyAct
 		newActivityList = append(newActivityList, a)
 	}
 	choosenActivity, _ := h.retrieveActivity(newActivityList)
-	return &pb.ActivityResponse{Allweatheractivities: choosenActivity.Name + " " + choosenActivity.Postcode}, nil
+	return &pb.ActivityResponse{fmt.Sprintf("%s %s", choosenActivity.Name, choosenActivity.Postcode)}, nil
 }
 
 func (h *server) retrieveActivity(newActivityList []Activities) (Activities, error) {
