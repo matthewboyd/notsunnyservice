@@ -6,12 +6,11 @@ option go_package = ".;proto";
 
 service NotSunnyActivities{
 
-  rpc GetAllWeatherActivities(NotSunnyActivitiesParams) returns (Activity) {};
+  rpc GetAllWeatherActivities(NotSunnyActivitiesParams) returns (ActivityResponse) {};
 }
 
 message NotSunnyActivitiesParams {}
 
-message Activity {
-  string name_of_activity = 1;
-  string postcode = 2;
+message ActivityResponse {
+  string allweatheractivity = 1;
 }

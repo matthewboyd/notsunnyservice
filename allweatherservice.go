@@ -26,7 +26,7 @@ type Activity struct {
 	Postcode string
 }
 
-func (h *Handler) GetAllWeatherActivities() *Activity {
+func (h *Handler) GetAllWeatherActivities() string {
 	var a Activities
 	var newActivityList []Activities
 	var ctx context.Context
