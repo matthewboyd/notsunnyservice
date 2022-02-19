@@ -10,7 +10,7 @@ service NotSunnyActivities{
 }
 
 message NotSunnyActivitiesParams {
-  string test = 1;
+  string Test = 1;
 }
 
 message ActivityResponse {
