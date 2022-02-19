@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotSunnyActivitiesClient interface {
-	GetAllWeatherActivities(ctx context.Context, in *NotSunnyActivitiesParams, opts ...grpc.CallOption) (*Activity, error)
+	GetAllWeatherActivities(ctx context.Context, in *NotSunnyActivitiesParams, opts ...grpc.CallOption) (*Activities, error)
 }
 
 type notSunnyActivitiesClient struct {
@@ -29,8 +29,8 @@ func NewNotSunnyActivitiesClient(cc grpc.ClientConnInterface) NotSunnyActivities
 	return &notSunnyActivitiesClient{cc}
 }
 
-func (c *notSunnyActivitiesClient) GetAllWeatherActivities(ctx context.Context, in *NotSunnyActivitiesParams, opts ...grpc.CallOption) (*Activity, error) {
-	out := new(Activity)
+func (c *notSunnyActivitiesClient) GetAllWeatherActivities(ctx context.Context, in *NotSunnyActivitiesParams, opts ...grpc.CallOption) (*Activities, error) {
+	out := new(Activities)
 	err := c.cc.Invoke(ctx, "/template.NotSunnyActivities/GetAllWeatherActivities", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (c *notSunnyActivitiesClient) GetAllWeatherActivities(ctx context.Context, 
 // All implementations must embed UnimplementedNotSunnyActivitiesServer
 // for forward compatibility
 type NotSunnyActivitiesServer interface {
-	GetAllWeatherActivities(context.Context, *NotSunnyActivitiesParams) (*Activity, error)
+	GetAllWeatherActivities(context.Context, *NotSunnyActivitiesParams) (*Activities, error)
 	mustEmbedUnimplementedNotSunnyActivitiesServer()
 }
 
@@ -50,7 +50,7 @@ type NotSunnyActivitiesServer interface {
 type UnimplementedNotSunnyActivitiesServer struct {
 }
 
-func (UnimplementedNotSunnyActivitiesServer) GetAllWeatherActivities(context.Context, *NotSunnyActivitiesParams) (*Activity, error) {
+func (UnimplementedNotSunnyActivitiesServer) GetAllWeatherActivities(context.Context, *NotSunnyActivitiesParams) (*Activities, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllWeatherActivities not implemented")
 }
 func (UnimplementedNotSunnyActivitiesServer) mustEmbedUnimplementedNotSunnyActivitiesServer() {}
