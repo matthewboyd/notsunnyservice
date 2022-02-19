@@ -30,11 +30,6 @@ type Activities struct {
 	Sunny    bool
 }
 
-type Activity struct {
-	Name     string
-	Postcode string
-}
-
 func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyActivitiesParams) (*pb.ActivityResponse, error) {
 	log.Println("In the GetAllWeatherService")
 	var a Activities
