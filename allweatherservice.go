@@ -35,7 +35,7 @@ func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyAct
 	var a Activities
 	var newActivityList []Activities
 	notSunnyActivitiesQuery := "SELECT * FROM activities where sunny = $1"
-	rows, err := h.Db.Query(ctx, notSunnyActivitiesQuery, false)
+	rows, err := h.Handler.Db.Query(ctx, notSunnyActivitiesQuery, false)
 	if err != nil {
 		log.Fatalln("An error occurred", err)
 	}
