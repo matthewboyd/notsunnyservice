@@ -14,6 +14,12 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
+type NotSunnyActivitiesParams struct {}
+
+type ActivityResponse struct {
+	Allweatheractivities string
+}
+
 // NotSunnyActivitiesClient is the client API for NotSunnyActivities service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
