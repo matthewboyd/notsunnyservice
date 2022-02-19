@@ -5,17 +5,15 @@ import (
 	"fmt"
 	"github.com/go-redis/redis/v8"
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/sony/gobreaker"
 	"log"
 	"math/rand"
 	"time"
 )
 
 type Handler struct {
-	Logger         log.Logger
-	Db             pgxpool.Pool
-	Redis          redis.Client
-	CircuitBreaker *gobreaker.CircuitBreaker
+	Logger log.Logger
+	Db     pgxpool.Pool
+	Redis  redis.Client
 }
 
 type Activities struct {
