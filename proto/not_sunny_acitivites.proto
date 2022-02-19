@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package template;
+option go_package = ".;proto";
+
+
+service NotSunnyActivities{
+
+  rpc GetAllWeatherActivities(NotSunnyActivitiesParams) returns (Activity) {};
+}
+
+message NotSunnyActivitiesParams {}
+
+message Activity {
+  string name_of_activity = 1;
+  string postcode = 2;
+}

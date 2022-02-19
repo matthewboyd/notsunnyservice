@@ -1,0 +1,16 @@
+syntax = "proto3";
+package allweatherservice;
+
+service AllWeatherService{
+
+  rpc GetNotSunnyActivities(context.Context) returns (Activity) {};
+}
+
+message Activity {
+  string name_of_activity = 1;
+  string postcode = 2;
+}
+
+message Context {
+  context.Context
+}
