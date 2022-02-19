@@ -10,7 +10,7 @@ import (
 )
 
 type NotSunnyActivitiesParams struct {
-	test string
+	Test string
 }
 
 type ActivityResponse struct {
