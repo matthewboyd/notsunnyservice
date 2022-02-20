@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/go-redis/redis/v8"
 	"github.com/jackc/pgx/v4/pgxpool"
 	pb "github.com/matthewboyd/notsunnyservice/pb"
@@ -33,25 +32,26 @@ type Activities struct {
 func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyActivitiesParams) (*pb.ActivityResponse, error) {
 	log.Println("In the GetAllWeatherService")
 	log.Printf("the server: %v and the handler of server: %v and db direct from server: %v", h, h.Handler, h.Db)
-	var a Activities
-	var newActivityList []Activities
-	notSunnyActivitiesQuery := "SELECT * FROM activities where sunny = $1"
-	rows, err := h.Handler.Db.Query(ctx, notSunnyActivitiesQuery, false)
-	log.Printf("rows are: %v", rows)
-	if err != nil {
-		log.Fatalln("An error occurred", err)
-	}
-	defer rows.Close()
-	log.Println("just before db")
-	for rows.Next() {
-		err = rows.Scan(&a.Name, &a.Postcode, &a.Sunny)
-		if err != nil {
-			log.Fatalln("Error in scanning db rows", err)
-		}
-		newActivityList = append(newActivityList, a)
-	}
-	choosenActivity, _ := h.retrieveActivity(newActivityList)
-	return &pb.ActivityResponse{Allweatheractivity: fmt.Sprintf("%s %s", choosenActivity.Name, choosenActivity.Postcode)}, nil
+	//var a Activities
+	//var newActivityList []Activities
+	//notSunnyActivitiesQuery := "SELECT * FROM activities where sunny = $1"
+	//rows, err := h.Handler.Db.Query(ctx, notSunnyActivitiesQuery, false)
+	//log.Printf("rows are: %v", rows)
+	//if err != nil {
+	//	log.Fatalln("An error occurred", err)
+	//}
+	//defer rows.Close()
+	//log.Println("just before db")
+	//for rows.Next() {
+	//	err = rows.Scan(&a.Name, &a.Postcode, &a.Sunny)
+	//	if err != nil {
+	//		log.Fatalln("Error in scanning db rows", err)
+	//	}
+	//	newActivityList = append(newActivityList, a)
+	//}
+	//choosenActivity, _ := h.retrieveActivity(newActivityList)
+	//return &pb.ActivityResponse{Allweatheractivity: fmt.Sprintf("%s %s", choosenActivity.Name, choosenActivity.Postcode)}, nil
+	return &pb.ActivityResponse{Allweatheractivity: "testing"}, nil
 }
 
 func (h *server) retrieveActivity(newActivityList []Activities) (Activities, error) {
