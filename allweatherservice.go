@@ -32,6 +32,7 @@ type Activities struct {
 
 func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyActivitiesParams) (*pb.ActivityResponse, error) {
 	log.Println("In the GetAllWeatherService")
+	log.Printf("the server: %v and the handler of server: %v and db direct from server: %v", h, h.Handler, h.Db)
 	var a Activities
 	var newActivityList []Activities
 	notSunnyActivitiesQuery := "SELECT * FROM activities where sunny = $1"
