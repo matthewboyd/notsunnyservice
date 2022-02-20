@@ -31,15 +31,17 @@ type Activities struct {
 }
 
 func (h *server) GetAllWeatherActivities(ctx context.Context, in *pb.NotSunnyActivitiesParams) (*pb.ActivityResponse, error) {
-	log.Println("In the GetAllWeatherService")
+	h.Handler.Logger.Println("In the GetAllWeatherService")
 	var a Activities
 	var newActivityList []Activities
 	notSunnyActivitiesQuery := "SELECT * FROM activities where sunny = $1"
 	rows, err := h.Handler.Db.Query(ctx, notSunnyActivitiesQuery, false)
+	log.Printf("rows are: %v", rows)
 	if err != nil {
 		log.Fatalln("An error occurred", err)
 	}
 	defer rows.Close()
+	log.Println("just before db")
 	for rows.Next() {
 		err = rows.Scan(&a.Name, &a.Postcode, &a.Sunny)
 		if err != nil {
